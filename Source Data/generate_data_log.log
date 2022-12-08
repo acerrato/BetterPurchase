@@ -1,0 +1,9 @@
+DEBUG - The value of x is 2 - 2022-12-08 06:34:05,487
+INFO - Sucessfully Completed step 1 - 2022-12-08 06:34:05,487
+INFO - Sucessfully Completed step 2 - 2022-12-08 06:34:05,487
+INFO - Sucessfully Completed step 3 - 2022-12-08 06:34:05,487
+ERROR - <class 'ZeroDivisionError'> - 2022-12-08 06:34:05,487
+Traceback (most recent call last):
+  File ".\generate_source_data.py", line 17, in do_stuff
+    1/0
+ZeroDivisionError: division by zero

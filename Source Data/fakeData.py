@@ -44,27 +44,20 @@ def prep_fake_ids():
     # The id code below works only because I know once imported this is how the ids will be created in Snowflake, and the exact link isn't important here so long as the id is valid 
 
     try:
-        laptop_ids = []
         laptops = pd.read_csv('Files/laptops.csv')
-        for i in range(len(laptops)):
-            laptop_ids.append('LAP-' + str(i).zfill(8) ) 
+        laptop_ids = laptops['sku'].to_list()
 
-
-        fitness_ids = []
         fitness_products = pd.read_csv('Files/healthFitness.csv')
-        for i in range(len(fitness_products)):
-            fitness_ids.append('FIT-' + str(i).zfill(8) )
+        fitness_ids = fitness_products['sku'].to_list()
 
-
-        automation_ids = []
         automation_products = pd.read_csv('Files/homeAutomation.csv')
-        for i in range(len(automation_products)):
-            automation_ids.append('AUT-' + str(i).zfill(8) )
+        automation_ids = automation_products['sku'].to_list()
             
-        cell_ids = []
         cells = pd.read_csv('Files/cellPhones.csv')
-        for i in range(len(cells)):
-            cell_ids.append('CEL-' + str(i).zfill(8) )
+        cell_ids = cells['sku'].to_list()
+        
+        stores = pd.read_csv('Files/stores.csv')
+        store_ids = stores['storeId'].to_list()
             
         all_products = laptop_ids 
 
@@ -79,8 +72,14 @@ def prep_fake_ids():
         provider_name='product_id',
         elements=all_products,
     )
+    
+    store_provider = DynamicProvider (
+        provider_name='store_id',
+        elements=store_ids,
+    )
     fake.add_provider(products_provider)
-    fake_ids_created = True
+    fake.add_provider(store_provider)
+
     
 def generate_transactions(num_records):
     if not fake_ids_created:
@@ -93,7 +92,7 @@ def generate_transactions(num_records):
         transactions.append(
             {
                 'cust_id': random.randrange(0,num_customers),
-                'store_id': random.randrange(0,num_stores),
+                'store_id': fake.store_id(),
                 'products': multiple_products(random.randrange(1,5)), #Random number of random products
                 'transaction_date': fake.date_between_dates(datetime.strptime('1/1/1990','%m/%d/%Y'),datetime.strptime('12/31/2000','%m/%d/%Y'))
             })

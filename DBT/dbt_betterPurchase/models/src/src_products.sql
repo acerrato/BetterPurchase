@@ -10,7 +10,7 @@ SELECT
     color,
     regularprice,
     saleprice
-FROM raw.laptops
+FROM  {{source('aws','laptops')}} 
 
 UNION ALL
 
@@ -26,7 +26,7 @@ SELECT
     color,
     regularprice,
     saleprice
-FROM raw.cell_phones
+FROM  {{source('aws','cell_phones')}} 
 
 UNION ALL
 
@@ -42,7 +42,7 @@ SELECT
     color,
     regularprice,
     saleprice
-FROM raw.home_automation
+FROM  {{source('aws','home_automation')}} 
 
 UNION ALL
 
@@ -58,4 +58,4 @@ SELECT
     color,
     regularprice,
     saleprice
-FROM raw.health_fitness
+FROM  {{source('aws','health_fitness')}} 

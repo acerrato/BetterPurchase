@@ -3,7 +3,7 @@ SELECT
     id as trans_id,
     trim("VALUE",'"[]') AS sku,
     transaction_date
-FROM raw.transactions,
+FROM {{source('aws','transactions')}},
     table(flatten(split(products,','))) a
 )
 --Not realistic, but since transaction history is fake we need to generate sales numbers.  

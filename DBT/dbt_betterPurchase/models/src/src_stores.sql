@@ -10,4 +10,4 @@ SELECT
     region as store_region,
     full_postal_code as store_zip,
     country as store_country
-FROM raw.stores
+FROM {{source('aws','stores')}} 

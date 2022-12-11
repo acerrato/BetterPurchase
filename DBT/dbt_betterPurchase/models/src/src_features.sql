@@ -2,7 +2,7 @@ WITH features as (
 SELECT
     sku,
     trim(value:feature,'"') as feature
-FROM raw.laptops,
+FROM {{source('aws','laptops')}},
     table(flatten(parse_json(features),''))
 
 UNION ALL
@@ -10,15 +10,7 @@ UNION ALL
 SELECT
     sku,
     trim(value:feature,'"') as feature
-FROM raw.cell_phones,
-    table(flatten(parse_json(features),''))
-    
-UNION ALL
-
-SELECT
-    sku,
-    trim(value:feature,'"') as feature
-FROM raw.health_fitness,
+FROM {{source('aws','cell_phones')}},
     table(flatten(parse_json(features),''))
     
 UNION ALL
@@ -26,7 +18,15 @@ UNION ALL
 SELECT
     sku,
     trim(value:feature,'"') as feature
-FROM raw.home_automation,
+FROM {{source('aws','health_fitness')}},
+    table(flatten(parse_json(features),''))
+    
+UNION ALL
+
+SELECT
+    sku,
+    trim(value:feature,'"') as feature
+FROM {{source('aws','home_automation')}},
     table(flatten(parse_json(features),''))
 )
 

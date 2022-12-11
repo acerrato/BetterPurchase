@@ -9,7 +9,7 @@ WITH prep AS (
         TRIM(split(phone_number,'x')[1] ,'"') as cust_phone_extension,
         email as cust_email,
         birthday
-    FROM raw.customers
+    FROM {{source('aws','customers')}}
 
     )
     

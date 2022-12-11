@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: aws
+    schema: raw
+    tables:
+      - name: customers
+        identifier: customers
+      - name: stores
+        identifier: stores
+      - name: laptops
+        identifier: laptops
+      - name: cell_phones
+        identifier: cell_phones
+      - name: health_fitness
+        identifier: health_fitness
+      - name: home_automation
+        identifier: home_automation
+      - name: transactions
+        identifier: transactions

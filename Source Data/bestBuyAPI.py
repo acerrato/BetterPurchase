@@ -1,6 +1,7 @@
 import requests
 import time
 import pandas as pd
+import sensitive 
 
 product_categories = {
         'laptops': 'abcat0502000',
@@ -16,7 +17,7 @@ def get_stores():
     print('Collecting Store Data')
     #TODO: Don't need this so broken out, make this URL building consistent across methods
     base_url = "https://api.bestbuy.com/v1/stores((region=PA))"
-    api_key = 'apiKey=pb7B47pWwTo1wViwiKAYQq2w' 
+    api_key = 'apiKey=' + sensitive['apiKey'] 
     fields = "show=address,address2,city,country,lat,location,lng,name,longName,phone,fullPostalCode,region,storeId,storeType"
     page = 1 
     format = "&format=json"
@@ -72,7 +73,7 @@ def get_products(category):
     
     category_code = get_product_category_code(category)
     
-    base_url = "https://api.bestbuy.com/v1/products((categoryPath.id=" + category_code + "))?apiKey=pb7B47pWwTo1wViwiKAYQq2w&sort=color.asc&show=color,condition,customerReviewAverage,customerReviewCount,description,features.feature,longDescription,manufacturer,modelNumber,name,regularPrice,salePrice,shortDescription,sku,type,upc&pageSize=100"
+    base_url = "https://api.bestbuy.com/v1/products((categoryPath.id=" + category_code + "))?apiKey=" + sensitive['apiKey']  + "w&sort=color.asc&show=color,condition,customerReviewAverage,customerReviewCount,description,features.feature,longDescription,manufacturer,modelNumber,name,regularPrice,salePrice,shortDescription,sku,type,upc&pageSize=100"
     page = 1 
     format = "&format=json"
 

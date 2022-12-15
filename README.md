@@ -10,14 +10,14 @@ BetterPurchase is a fictional retail chain, looking to stand up a simple reporti
 
 To keep things simple, this project will consist of store, product, customer, and sales data.  Data will be staged on an AWS s3 bucket, then loaded into Snowflake where DBT will take over.  Reporting will be built in Tableau.
 
-DIAGRAM HERE
+![ERD Diagram](ERD.PNG)
 
 
 ## Source Data Generation
 See the [source data](./Source%20Data/) README file for documentation on how I gathered and generated data for this project.
 
 ## DBT
-See the [DBT project](./DBT/dbt_betterPurchase/) for documentation on the various DBT components of this project.
+See the [DBT project](./DBT/dbt_betterPurchase/) README file or documentation on the various DBT components of this project.
 
 ## Tableau
 placeholder - - Tableau not yet completed

@@ -1,5 +1,10 @@
 import bestBuyAPI
 import fakeData
+import logging
+
+#clear / start a new log file
+logging.basicConfig(level=logging.DEBUG, filename='logs/generate_data.log',filemode="w",
+                    format="%(levelname)s - %(message)s - %(asctime)s")
 
 if __name__ =='__main__':
     #bestBuy data must be pulled first

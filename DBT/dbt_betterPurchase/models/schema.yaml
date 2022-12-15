@@ -1,0 +1,320 @@
+---Generated automatically, please update after generation
+version: 2
+sources:
+  - name: 
+
+
+models:
+  - name: DIM_CUSTOMERS
+    columns:
+      - name: CUST_EMAIL
+       description: cust_email (data type text)
+
+      - name: CUST_ID
+       description: cust_id (data type number)
+
+      - name: CUST_NAME
+       description: cust_name (data type text)
+
+      - name: CUST_PHONE_EXTENSION
+       description: cust_phone_extension (data type text)
+
+      - name: CUST_PHONE_NUMBER
+       description: cust_phone_number (data type text)
+
+      - name: MODIFIED_DATE
+       description: modified_date (data type timestamp_ltz)
+
+      - name: BIRTHDAY
+       description: birthday (data type date)
+
+      - name: CREATE_DATE
+       description: create_date (data type timestamp_ltz)
+
+      - name: CUST_ADDRESS
+       description: cust_address (data type text)
+
+      - name: CUST_COUNTRY_CODE
+       description: cust_country_code (data type number)
+
+
+  - name: DIM_PRODUCTS
+    columns:
+      - name: MANUFACTURER
+       description: manufacturer (data type text)
+
+      - name: MODEL_NUMBER
+       description: model_number (data type text)
+
+      - name: MODIFIED_DATE
+       description: modified_date (data type timestamp_ltz)
+
+      - name: PRODUCT_CATEGORY
+       description: product_category (data type text)
+
+      - name: PRODUCT_COLOR
+       description: product_color (data type text)
+
+      - name: PRODUCT_DESCRIPTION
+       description: product_description (data type text)
+
+      - name: PRODUCT_NAME
+       description: product_name (data type text)
+
+      - name: REGULAR_PRICE
+       description: regular_price (data type float)
+
+      - name: CREATE_DATE
+       description: create_date (data type timestamp_ltz)
+
+      - name: TYPE
+       description: type (data type text)
+
+      - name: UPC
+       description: upc (data type text)
+
+      - name: SALE_PRICE
+       description: sale_price (data type float)
+
+      - name: SKU
+       description: sku (data type text)
+
+
+  - name: SRC_STORES
+    columns:
+      - name: STORE_NAME
+       description: store_name (data type text)
+
+      - name: STORE_PHONE
+       description: store_phone (data type text)
+
+      - name: STORE_REGION
+       description: store_region (data type text)
+
+      - name: STORE_TYPE
+       description: store_type (data type text)
+
+      - name: STORE_ZIP
+       description: store_zip (data type text)
+
+      - name: INTERNAL_ID
+       description: internal_id (data type number)
+
+      - name: STORE_ADDRESS1
+       description: store_address1 (data type text)
+
+      - name: STORE_ADDRESS2
+       description: store_address2 (data type text)
+
+      - name: STORE_CITY
+       description: store_city (data type text)
+
+      - name: STORE_COUNTRY
+       description: store_country (data type text)
+
+      - name: STORE_ID
+       description: store_id (data type number)
+
+
+  - name: SRC_TRANSACTIONS
+    columns:
+      - name: CUST_ID
+       description: cust_id (data type number)
+
+      - name: STORE_ID
+       description: store_id (data type number)
+
+      - name: TAX_TOTAL
+       description: tax_total (data type float)
+
+      - name: TRANSACTION_DATE
+       description: transaction_date (data type date)
+
+      - name: TRANS_ID
+       description: trans_id (data type number)
+
+      - name: SALE_TOTAL
+       description: sale_total (data type float)
+
+
+  - name: DIM_PRODUCT_FEATURES
+    columns:
+      - name: FEATURE
+       description: feature (data type text)
+
+      - name: MODIFIED_DATE
+       description: modified_date (data type timestamp_ltz)
+
+      - name: CREATE_DATE
+       description: create_date (data type timestamp_ltz)
+
+      - name: SKU
+       description: sku (data type text)
+
+
+  - name: SRC_PRODUCT_SALES
+    columns:
+      - name: TAX
+       description: tax (data type float)
+
+      - name: TRANS_ID
+       description: trans_id (data type number)
+
+      - name: SALEPRICE
+       description: saleprice (data type float)
+
+      - name: SKU
+       description: sku (data type text)
+
+
+  - name: SRC_CUSTOMERS
+    columns:
+      - name: CUST_PHONE_NUMBER
+       description: cust_phone_number (data type text)
+
+      - name: CUST_EMAIL
+       description: cust_email (data type text)
+
+      - name: CUST_ID
+       description: cust_id (data type number)
+
+      - name: CUST_NAME
+       description: cust_name (data type text)
+
+      - name: CUST_PHONE_EXTENSION
+       description: cust_phone_extension (data type text)
+
+      - name: BIRTHDAY
+       description: birthday (data type date)
+
+      - name: CUST_ADDRESS
+       description: cust_address (data type text)
+
+      - name: CUST_COUNTRY_CODE
+       description: cust_country_code (data type number)
+
+
+  - name: SRC_FEATURES
+    columns:
+      - name: FEATURE
+       description: feature (data type text)
+
+      - name: SKU
+       description: sku (data type text)
+
+
+  - name: FACT_TRANSACTIONS
+    columns:
+      - name: STORE_ID
+       description: store_id (data type number)
+
+      - name: CUST_ID
+       description: cust_id (data type number)
+
+      - name: MODIFIED_DATE
+       description: modified_date (data type timestamp_ltz)
+
+      - name: CREATE_DATE
+       description: create_date (data type timestamp_ltz)
+
+      - name: TAX_TOTAL
+       description: tax_total (data type float)
+
+      - name: TRANSACTION_DATE
+       description: transaction_date (data type date)
+
+      - name: TRANS_ID
+       description: trans_id (data type number)
+
+      - name: SALE_TOTAL
+       description: sale_total (data type float)
+
+
+  - name: DIM_STORES
+    columns:
+      - name: STORE_NAME
+       description: store_name (data type text)
+
+      - name: STORE_PHONE
+       description: store_phone (data type text)
+
+      - name: STORE_REGION
+       description: store_region (data type text)
+
+      - name: STORE_TYPE
+       description: store_type (data type text)
+
+      - name: STORE_ZIP
+       description: store_zip (data type text)
+
+      - name: STORE_ADDRESS1
+       description: store_address1 (data type text)
+
+      - name: STORE_ADDRESS2
+       description: store_address2 (data type text)
+
+      - name: STORE_CITY
+       description: store_city (data type text)
+
+      - name: STORE_COUNTRY
+       description: store_country (data type text)
+
+      - name: STORE_ID
+       description: store_id (data type number)
+
+
+  - name: FACT_PRODUCT_SALES
+    columns:
+      - name: TAX
+       description: tax (data type float)
+
+      - name: MODIFIED_DATE
+       description: modified_date (data type timestamp_ltz)
+
+      - name: CREATE_DATE
+       description: create_date (data type timestamp_ltz)
+
+      - name: TRANS_ID
+       description: trans_id (data type number)
+
+      - name: SALE_PRICE
+       description: sale_price (data type float)
+
+      - name: SKU
+       description: sku (data type text)
+
+
+  - name: SRC_PRODUCTS
+    columns:
+      - name: LONGDESCRIPTION
+       description: longdescription (data type text)
+
+      - name: MANUFACTURER
+       description: manufacturer (data type text)
+
+      - name: MODELNUMBER
+       description: modelnumber (data type text)
+
+      - name: NAME
+       description: name (data type text)
+
+      - name: PRODUCT_CATEGORY
+       description: product_category (data type text)
+
+      - name: REGULARPRICE
+       description: regularprice (data type float)
+
+      - name: SALEPRICE
+       description: saleprice (data type float)
+
+      - name: COLOR
+       description: color (data type text)
+
+      - name: TYPE
+       description: type (data type text)
+
+      - name: UPC
+       description: upc (data type text)
+
+      - name: SKU
+       description: sku (data type text)

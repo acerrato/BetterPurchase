@@ -63,7 +63,7 @@ CREATE OR REPLACE STORAGE INTEGRATION aws_integration
   TYPE = EXTERNAL_STAGE
   STORAGE_PROVIDER = 'S3'
   ENABLED = TRUE
-  STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::579103228378:role/SnowflakeAccessRole'
+  STORAGE_AWS_ROLE_ARN = '<arn>'
   STORAGE_ALLOWED_LOCATIONS = ('s3://better-purchase/');
   
 

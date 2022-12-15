@@ -2,6 +2,10 @@ import requests
 import time
 import pandas as pd
 import sensitive 
+import logging
+
+logging.basicConfig(level=logging.DEBUG, filename='logs/generate_data.log',filemode="a",
+                    format="%(levelname)s - %(message)s - %(asctime)s")
 
 product_categories = {
         'laptops': 'abcat0502000',
@@ -14,10 +18,15 @@ product_categories = {
 #TODO: change the pandas.append() to concat to get rid of deprecation warnings 
 
 def get_stores():
-    print('Collecting Store Data')
+    logging.info("Gathering store data")
     #TODO: Don't need this so broken out, make this URL building consistent across methods
     base_url = "https://api.bestbuy.com/v1/stores((region=PA))"
-    api_key = 'apiKey=' + sensitive['apiKey'] 
+    try:
+        api_key = 'apiKey=' + sensitive['apiKey'] 
+    except KeyError:
+        logging.exception("Failure while referencing API key - ensure 'sensitive.py' file exists with the key value needed")
+        quit()
+        
     fields = "show=address,address2,city,country,lat,location,lng,name,longName,phone,fullPostalCode,region,storeId,storeType"
     page = 1 
     format = "&format=json"
@@ -27,21 +36,34 @@ def get_stores():
 
     payload={}
     headers = {}
-
-    response = requests.request("GET", url, headers=headers, data=payload)
-    try:
-        df_stores = pd.DataFrame.from_dict(response.json()['stores'])
-    except KeyError:
-        print("Key Error")
-        print(response.json())
+    
+    allowed_retries = 10
+    attempts = 0
+    
+    while attempts <= allowed_retries:
+        response = requests.request("GET", url, headers=headers, data=payload)
+        try:
+            df_stores = pd.DataFrame.from_dict(response.json()['stores'])
+            attempts = allowed_retries + 1
+        except KeyError:
+            logging.debug("Failure in parsing API response - expected key 'stores' ")
+            logging.debug(response.json())
+            
+        
     
 
     for _ in range(response.json()['totalPages']- 1) :
+        time.sleep(1) #So we won't exceed the calls per second limit
         page = page + 1
         url = base_url + "?" + api_key + "&" + fields + "&page=" + str(page) + format
         response = requests.request("GET", url, headers=headers, data=payload)
-        df_stores = df_stores.append(pd.DataFrame.from_dict(response.json()['stores']))
-        time.sleep(1) #So we won't exceed the calls per second limit
+        try:
+            df_stores = df_stores.append(pd.DataFrame.from_dict(response.json()['stores']))
+        except KeyError:
+            logging.exception("Failure in parsing API response - expected key 'stores' ")
+            logging.debug(response.json())
+            page = page - 1
+            time.sleep(5) #wait an extra 5s if we hit an error
     df_stores.to_csv("Files/stores.csv",index=False)
 
 def get_product_categories():
@@ -52,7 +74,7 @@ def get_product_category_code(category):
     try:
         category_code = product_categories[category]
     except KeyError:
-        print('Category {} not found - aborting'.format(category))
+        logging.exception('Category {} not found - aborting'.format(category))
         quit()
     
     return category_code
@@ -60,11 +82,11 @@ def get_product_category_code(category):
 #Pull everything at once
 def get_all_products():
     for category in get_product_categories():
-        print('Collecting {} data'.format(category))
+        logging.debug('Collecting {} data'.format(category))
         try:
             get_products(category)
         except Exception:
-            print('Pausing for API limits')
+            logging.debug('Pausing for API limits')
             time.sleep(5) #So we won't exceed the API call limits
             get_products(category)
 
@@ -88,10 +110,11 @@ def get_products(category):
     df_products = pd.DataFrame.from_dict(response.json()['products'])
 
     for _ in range(response.json()['totalPages']- 1) :
+        time.sleep(1) #So we won't exceed the calls per second limit
         page = page + 1
         url = base_url + "&page=" + str(page) + format
         response = requests.request("GET", url, headers=headers, data=payload)
         df_products = df_products.append(pd.DataFrame.from_dict(response.json()['products']))
-        time.sleep(1) #So we won't exceed the calls per second limit
+        
     df_products.to_csv('Files/' + category + ".csv",index=False)
     

@@ -1,0 +1,1 @@
+SELECT * FROM {{ref('src_customers')}} WHERE birthday <= DATEADD(year,-100,GETDATE()) OR birthday > DATEADD(year,-10,GETDATE())

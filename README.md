@@ -1,17 +1,23 @@
 # BetterPurchase - Personal data project
 
-This repository exists as a self-driven training scenario.  I will present a business problem, then design and implement an end-to-end solution as if I was hired as a consultant.
+This repository exists as a self-driven training project.  My objective is to get better aquainted with DBT, how it interfaces with Snowflake, and it's benefits around version control & documentation.
 
-# Problem Statement
+## Scenario
 
-BetterPurchase is a fictional retail chain. Historically the company has managed their operations without the use of centralized reporting or data modeling.  Facing stiff competition from other retailers both physical and online they are looking to hire a consultancy to build a data infrustructure that will grant them better insight into their operations, and make more data-driven decsisions.  Throughout the course of this project I will:
+BetterPurchase is a fictional retail chain, looking to stand up a simple reporting environment in the cloud.  I will generate data, stage it on an AWS s3 bucket, pull it into Snowflake, then leverage DBT for data transformations, testing, and documentation.
 
-1. Asess the business objectives and available data sources.
-2. Gain an understanding of current operations, and where new data solutions might play a role.
-3. Assess the resources the company is willing to commit to sustaining their data operations ongoing.
-4. Create a proposal document recommending a technology stack, data architecture, and staffing estimates that will support the business objectives.
-5. Implement the proposed data solution, along with documentation and training materials
-6. Review the implemented solution with BetterPurchase, comparing what was created with what was proposed and discuss changes or additional features the business might benefit from.  At this time training materials and documenation will be finalized to ensure the client is self-sufficient going forward.
+## Data & Architecture
+
+To keep things simple, this project will consist of store, product, customer, and sales data.  Data will be staged on an AWS s3 bucket, then loaded into Snowflake where DBT will take over.  Reporting will be built in Tableau.
+
+DIAGRAM HERE
 
 
-The end result of this exercise will be a fully documented exploration of designing a custom data solution from scratch, as well as the decision making process.   
+## Source Data Generation
+See the source data [README file](./Source%20Data/README.md) for documentation on how I gathered and generated data for this project.
+
+## DBT
+See the DBT [README file](./DBT/dbt_betterPurchase/README.md) for documentation on the various DBT components of this project.
+
+## Tableau
+placeholder - - Tableau not yet completed

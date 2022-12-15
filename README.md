@@ -14,10 +14,10 @@ DIAGRAM HERE
 
 
 ## Source Data Generation
-See the source data [README file](./Source%20Data/README.md) for documentation on how I gathered and generated data for this project.
+See the [source data](./Source%20Data/) README file for documentation on how I gathered and generated data for this project.
 
 ## DBT
-See the DBT [README file](./DBT/dbt_betterPurchase/README.md) for documentation on the various DBT components of this project.
+See the [DBT project](./DBT/dbt_betterPurchase/) for documentation on the various DBT components of this project.
 
 ## Tableau
 placeholder - - Tableau not yet completed
